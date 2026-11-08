@@ -1,0 +1,240 @@
+{
+  "_comment": "Every value records its origin: the paper (with the exact place), the published code or our own decision. This table goes to the appendix of the report.",
+  "seeds": {
+    "value": [
+      0
+    ],
+    "source": "decision: one seed per configuration (compute). Preliminary runs with three seeds showed a spread small next to the differences between methods"
+  },
+  "steps_grid": {
+    "value": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      100,
+      1000
+    ],
+    "source": "decision (requested by the supervisor): sampling steps, one network evaluation each"
+  },
+  "ddpm": {
+    "T": {
+      "value": 1000,
+      "source": "paper: Ho et al. (2020), Section 4"
+    },
+    "beta_start": {
+      "value": 0.0001,
+      "source": "paper: Ho et al. (2020), Section 4 (linear schedule)"
+    },
+    "beta_end": {
+      "value": 0.02,
+      "source": "paper: Ho et al. (2020), Section 4 (linear schedule)"
+    }
+  },
+  "toy": {
+    "datasets": {
+      "value": [
+        "8gaussians",
+        "25gaussians",
+        "3unequal"
+      ],
+      "source": "published code: Gulrajani et al. (2017), gan_toy.py, for the first two; decision for the third"
+    },
+    "sigma0": {
+      "value": 1.0,
+      "source": "papers: standard Gaussian noise of Lipman et al. (2023), Section 4, and Tong et al. (2024), Algorithm 3"
+    },
+    "mlp_hidden": {
+      "value": 256,
+      "source": "decision (proposal)"
+    },
+    "mlp_layers": {
+      "value": 4,
+      "source": "decision (proposal)"
+    },
+    "time_dim": {
+      "value": 64,
+      "source": "decision"
+    },
+    "iterations": {
+      "value": 20000,
+      "source": "decision (proposal), identical for every method"
+    },
+    "batch_size": {
+      "value": 256,
+      "source": "published code: Gulrajani et al. (2017), gan_toy.py (BATCH_SIZE = 256); also the minibatch of the FM-OT coupling"
+    },
+    "lr": {
+      "value": 0.001,
+      "source": "decision: Adam (Kingma and Ba, 2015, Algorithm 1, default betas 0.9 and 0.999) without per-method tuning"
+    },
+    "n_test": {
+      "value": 2000,
+      "source": "decision: test sample of every mixture, drawn once with its own generator"
+    },
+    "n_validation": {
+      "value": 2000,
+      "source": "decision: validation sample to follow the loss during training"
+    },
+    "validate_every": {
+      "value": 500,
+      "source": "decision"
+    },
+    "reflow_pairs": {
+      "value": 100000,
+      "source": "decision on the number; procedure of Liu et al. (2023), Algorithm 1"
+    },
+    "reflow_pair_nfe": {
+      "value": 100,
+      "source": "decision: Heun (Karras et al., 2022, Algorithm 1 without noise) with 100 evaluations"
+    },
+    "straightness_steps": {
+      "value": 100,
+      "source": "decision: Euler with 100 steps"
+    },
+    "n_trajectories": {
+      "value": 300,
+      "source": "decision: trajectories drawn in the figures"
+    },
+    "threads": {
+      "value": 3,
+      "source": "decision: CPU threads per 2D run"
+    },
+    "sigma0_sweep": {
+      "value": [
+        0.05,
+        0.3,
+        1.0,
+        3.0
+      ],
+      "source": "decision (requested by the supervisor): very concentrated, intermediate, standard and very wide noise"
+    },
+    "batch_sweep": {
+      "value": [
+        16,
+        64,
+        256,
+        1024
+      ],
+      "source": "decision: minibatch sizes of the coupling; Tong et al. (2024) and Pooladian et al. (2023) show that the coupling approaches the optimal plan as the batch grows"
+    }
+  },
+  "mnist": {
+    "digits": {
+      "value": [
+        3,
+        4
+      ],
+      "source": "decision (requested by the supervisor): two classes keep the study about the methods"
+    },
+    "val_fraction": {
+      "value": 0.1,
+      "source": "decision: 10% of the official training images of the two digits"
+    },
+    "split_seed": {
+      "value": 0,
+      "source": "decision"
+    },
+    "unet_channels": {
+      "value": 32,
+      "source": "decision: U-Net of Ronneberger et al. (2015) with two resolutions, calibrated to the compute of an Apple M1"
+    },
+    "iterations": {
+      "value": 10000,
+      "source": "decision: calibrated to the compute of an Apple M1"
+    },
+    "batch_size": {
+      "value": 128,
+      "source": "paper: Ho et al. (2020), Appendix B (batch 128 on CIFAR-10); also the minibatch of the FM-OT coupling"
+    },
+    "batch_sweep": {
+      "value": [
+        128,
+        256,
+        512
+      ],
+      "source": "decision: test of H6 with FM as the control, since with a fixed number of iterations a larger minibatch also shows more data; 512 is the largest that the compute of an Apple M1 allowed"
+    },
+    "lr": {
+      "value": 0.0002,
+      "source": "paper: Ho et al. (2020), Appendix B (2e-4 on CIFAR-10)"
+    },
+    "grad_clip": {
+      "value": 1.0,
+      "source": "published code: Ho et al. (2020), diffusion repository (gradient norm clipped at 1)"
+    },
+    "ema": {
+      "value": 0.999,
+      "source": "decision: Ho et al. (2020), Appendix B, use 0.9999 with far more iterations"
+    },
+    "checkpoint_every": {
+      "value": 2000,
+      "source": "decision: resume after interruptions"
+    },
+    "validate_every": {
+      "value": 500,
+      "source": "decision"
+    },
+    "n_eval": {
+      "value": 2000,
+      "source": "decision: generated images per sampler and number of steps, close to the 1992 test images"
+    },
+    "eval_batch": {
+      "value": 1000,
+      "source": "decision"
+    },
+    "reflow_pairs": {
+      "value": 20000,
+      "source": "decision on the number; procedure of Liu et al. (2023), Algorithm 1"
+    },
+    "reflow_pair_nfe": {
+      "value": 32,
+      "source": "decision: Heun (Karras et al., 2022, Algorithm 1 without noise) with 32 evaluations"
+    },
+    "straightness_steps": {
+      "value": 100,
+      "source": "decision: Euler with 100 steps"
+    },
+    "n_straightness": {
+      "value": 500,
+      "source": "decision"
+    },
+    "classifier_epochs": {
+      "value": 3,
+      "source": "decision"
+    },
+    "classifier_lr": {
+      "value": 0.001,
+      "source": "decision: Adam with default betas"
+    },
+    "classifier_batch": {
+      "value": 128,
+      "source": "decision"
+    },
+    "ambiguity_threshold": {
+      "value": 0.9,
+      "source": "decision: an image is a clear digit if the classifier gives it probability >= 0.9"
+    },
+    "n_samples_saved": {
+      "value": 64,
+      "source": "decision: sample grids for the figures"
+    }
+  },
+  "relevance": {
+    "_comment": "With one seed, two values differ relevantly only if the larger exceeds the smaller by more than this fraction: twice the median relative standard deviation over three seeds in preliminary runs of the study (same networks and training protocol).",
+    "w1": {
+      "value": 0.36,
+      "source": "measured: median relative standard deviation of W1 over three seeds in preliminary runs, 0.18, times two"
+    },
+    "straightness": {
+      "value": 0.25,
+      "source": "measured: median relative standard deviation of the straightness over three seeds in preliminary runs, 0.124, times two"
+    },
+    "fd": {
+      "value": 0.06,
+      "source": "measured: median relative standard deviation of the FD over three seeds in preliminary runs on the ten digits, 0.028, times two"
+    }
+  }
+}

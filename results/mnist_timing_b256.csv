@@ -1,0 +1,3 @@
+method,seed,iterations,train_seconds,pair_seconds,parameters,device
+fmot,0,10000,4533.989026706986,0.0,410657,mps
+fm,0,10000,4292.569376915984,0.0,410657,mps

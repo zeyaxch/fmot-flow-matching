@@ -1,0 +1,15 @@
+# Data are downloaded from the official mirror (see README) and never committed.
+data/
+# Runs: only the final weights are kept. Intermediate checkpoints, reflow pairs, smoke tests
+# and logs are large or local, and the scripts regenerate them.
+runs/**
+!runs/**/
+!runs/2d/**/*.pt
+!runs/mnist/*/ema.pt
+!runs/mnist/classifier.pt
+!runs/mnist/test_features.npz
+runs/mnist/*_smoke/
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/

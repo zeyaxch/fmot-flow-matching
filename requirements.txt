@@ -1,0 +1,9 @@
+# Exact versions used for every result of the report (Python 3.14.0, Apple M1, macOS).
+# Other recent versions should work: PyTorch >= 2.2, NumPy >= 1.24, SciPy >= 1.11.
+torch==2.14.0
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+pandas==3.0.6
+# Only to run the tutorial notebook in Jupyter or VS Code.
+ipykernel==7.3.0

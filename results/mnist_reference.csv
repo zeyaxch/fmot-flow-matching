@@ -1,0 +1,2 @@
+n_train,n_validation,n_test,n_classifier_train,classifier_accuracy_all,classifier_accuracy_digits,test_share,test_ambiguous,fd_train_vs_test,real_ambiguous,real_share_error,n_reference
+10776,1197,1992,58803,0.9909,0.9899598393574297,0.5070281124497992,0.03614457831325302,6.62458546468096,0.041000000000000036,0.0023566633583342878,2000
